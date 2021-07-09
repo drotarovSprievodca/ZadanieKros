@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="firmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="hierarchia">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="int" Nullable="false" />
+          <Property Name="nazov" Type="varchar" MaxLength="10" />
+          <Property Name="patriDo" Type="int" />
+          <Property Name="veduci" Type="int" />
+        </EntityType>
+        <EntityType Name="zamestnanci">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="titul" Type="varchar" MaxLength="15" />
+          <Property Name="meno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="priezvisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefon" Type="varchar" MaxLength="15" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="veduci_constraint">
+          <End Role="zamestnanci" Type="Self.zamestnanci" Multiplicity="0..1" />
+          <End Role="hierarchia" Type="Self.hierarchia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zamestnanci">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="hierarchia">
+              <PropertyRef Name="veduci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="firmaModelStoreContainer">
+          <EntitySet Name="hierarchia" EntityType="Self.hierarchia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zamestnanci" EntityType="Self.zamestnanci" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="veduci_constraint" Association="Self.veduci_constraint">
+            <End Role="zamestnanci" EntitySet="zamestnanci" />
+            <End Role="hierarchia" EntitySet="hierarchia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="firmaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="hierarchia">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="Int32" Nullable="false" />
+          <Property Name="nazov" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="patriDo" Type="Int32" />
+          <Property Name="veduci" Type="Int32" />
+          <NavigationProperty Name="zamestnanci" Relationship="Self.veduci_constraint" FromRole="hierarchia" ToRole="zamestnanci" />
+        </EntityType>
+        <EntityType Name="zamestnanci">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="titul" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="meno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="priezvisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="hierarchia" Relationship="Self.veduci_constraint" FromRole="zamestnanci" ToRole="hierarchia" />
+        </EntityType>
+        <Association Name="veduci_constraint">
+          <End Role="zamestnanci" Type="Self.zamestnanci" Multiplicity="0..1" />
+          <End Role="hierarchia" Type="Self.hierarchia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zamestnanci">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="hierarchia">
+              <PropertyRef Name="veduci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="firmaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="hierarchia" EntityType="Self.hierarchia" />
+          <EntitySet Name="zamestnanci" EntityType="Self.zamestnanci" />
+          <AssociationSet Name="veduci_constraint" Association="Self.veduci_constraint">
+            <End Role="zamestnanci" EntitySet="zamestnanci" />
+            <End Role="hierarchia" EntitySet="hierarchia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="firmaModelStoreContainer" CdmEntityContainer="firmaEntities">
+          <EntitySetMapping Name="hierarchia">
+            <EntityTypeMapping TypeName="firmaModel.hierarchia">
+              <MappingFragment StoreEntitySet="hierarchia">
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="nazov" ColumnName="nazov" />
+                <ScalarProperty Name="patriDo" ColumnName="patriDo" />
+                <ScalarProperty Name="veduci" ColumnName="veduci" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zamestnanci">
+            <EntityTypeMapping TypeName="firmaModel.zamestnanci">
+              <MappingFragment StoreEntitySet="zamestnanci">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="titul" ColumnName="titul" />
+                <ScalarProperty Name="meno" ColumnName="meno" />
+                <ScalarProperty Name="priezvisko" ColumnName="priezvisko" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
