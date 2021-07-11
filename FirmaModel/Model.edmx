@@ -7,9 +7,9 @@
       <Schema Namespace="firmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="hierarchia">
           <Key>
-            <PropertyRef Name="kod" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="kod" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="nazov" Type="varchar" MaxLength="10" />
           <Property Name="patriDo" Type="int" />
           <Property Name="veduci" Type="int" />
@@ -52,9 +52,9 @@
       <Schema Namespace="firmaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="hierarchia">
           <Key>
-            <PropertyRef Name="kod" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="kod" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="nazov" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="patriDo" Type="Int32" />
           <Property Name="veduci" Type="Int32" />
@@ -101,7 +101,7 @@
           <EntitySetMapping Name="hierarchia">
             <EntityTypeMapping TypeName="firmaModel.hierarchia">
               <MappingFragment StoreEntitySet="hierarchia">
-                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nazov" ColumnName="nazov" />
                 <ScalarProperty Name="patriDo" ColumnName="patriDo" />
                 <ScalarProperty Name="veduci" ColumnName="veduci" />

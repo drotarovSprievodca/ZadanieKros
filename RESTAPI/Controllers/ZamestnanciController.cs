@@ -11,34 +11,31 @@ namespace RESTAPI.Controllers
     public class ZamestnanciController : ApiController
     {
         [HttpGet]
-        public IEnumerable<zamestnanci> GetZamestnanci()
-        {
+        public IEnumerable<zamestnanci> GetZamestnanci() {
             using (firmaEntities f = new firmaEntities()) {
                 f.Configuration.ProxyCreationEnabled = false;
                 return f.zamestnanci.ToList();
             }
         }
+
         [HttpPost]
-        public void PostZamestnanci(zamestnanci zamestnanec)
-        {
-            using (firmaEntities f = new firmaEntities())
-            {
+        public void PostZamestnanci(zamestnanci novy) {
+            using (firmaEntities f = new firmaEntities()) {
                 f.zamestnanci.Add(new zamestnanci() {
-                    id = zamestnanec.id,
-                    titul = zamestnanec.titul,
-                    meno = zamestnanec.meno,
-                    priezvisko = zamestnanec.priezvisko,
-                    telefon = zamestnanec.telefon,
-                    email = zamestnanec.email
+                    id = novy.id,
+                    titul = novy.titul,
+                    meno = novy.meno,
+                    priezvisko = novy.priezvisko,
+                    telefon = novy.telefon,
+                    email = novy.email
                 });
                 f.SaveChanges();
             }
         }
+
         [HttpPut]
-        public void PutZamestnanci(int id, zamestnanci upravovany)
-        {
-            using (firmaEntities f = new firmaEntities())
-            {
+        public void PutZamestnanci(int id, zamestnanci upravovany) {
+            using (firmaEntities f = new firmaEntities()) {
                 var najdeny = f.zamestnanci.FirstOrDefault(z => z.id == id);
                 if (najdeny != null)
                 {
@@ -52,15 +49,14 @@ namespace RESTAPI.Controllers
                 }
             }
         }
+
         [HttpDelete]
-        public void DeleteZamestnanci(int id)
-        {
-            using (firmaEntities f = new firmaEntities())
-            {
-                var mazany = f.zamestnanci.FirstOrDefault(z => z.id == id);
-                if (mazany != null)
+        public void DeleteZamestnanci(int id) {
+            using (firmaEntities f = new firmaEntities()) {
+                var naZmazanie = f.zamestnanci.FirstOrDefault(z => z.id == id);
+                if (naZmazanie != null)
                 {
-                    f.zamestnanci.Remove(mazany);
+                    f.zamestnanci.Remove(naZmazanie);
                     f.SaveChanges();
                 }
             }

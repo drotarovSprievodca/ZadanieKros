@@ -14,7 +14,7 @@ namespace FirmaModel
     
     public partial class hierarchia
     {
-        public int kod { get; set; }
+        public int id { get; set; }
         public string nazov { get; set; }
         public Nullable<int> patriDo { get; set; }
         public Nullable<int> veduci { get; set; }
