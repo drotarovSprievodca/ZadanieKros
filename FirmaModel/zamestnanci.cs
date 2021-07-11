@@ -11,7 +11,8 @@ namespace FirmaModel
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class zamestnanci
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,14 +20,21 @@ namespace FirmaModel
         {
             this.hierarchia = new HashSet<hierarchia>();
         }
-    
+
+        [Key]
         public int id { get; set; }
+        [RegularExpression("^[a-zA-Z.]{2,14}$")]
         public string titul { get; set; }
+        [Required]
+        [RegularExpression("^[a-zA-Z]{2,50}$")]
         public string meno { get; set; }
+        [Required]
+        [RegularExpression("^[a-zA-Z]{2,50}$")]
         public string priezvisko { get; set; }
+        [RegularExpression("^[0-9]{10}$")]
         public string telefon { get; set; }
         public string email { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<hierarchia> hierarchia { get; set; }
     }

@@ -256,7 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FirmaModel\FirmaModel.csproj">
-      <Project>{b39159db-dfd0-487c-ae14-30b43bbaf073}</Project>
+      <Project>{433599b1-019a-42ce-94b9-1b6ac542bddd}</Project>
       <Name>FirmaModel</Name>
     </ProjectReference>
   </ItemGroup>

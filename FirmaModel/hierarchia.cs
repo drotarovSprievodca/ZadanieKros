@@ -11,14 +11,21 @@ namespace FirmaModel
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class hierarchia
     {
+        [Key]
         public int id { get; set; }
+        [RegularExpression("^[a-zA-Z0-9]{1,50}$")]
         public string nazov { get; set; }
-        public Nullable<int> patriDo { get; set; }
+        [Required]
+        public int patriDo { get; set; }
+        [Required]
+        [Range(1, 4)]
+        public int uroven { get; set; }
         public Nullable<int> veduci { get; set; }
-    
+
         public virtual zamestnanci zamestnanci { get; set; }
     }
 }

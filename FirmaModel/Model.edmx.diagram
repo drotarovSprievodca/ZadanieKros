@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6b88845c7d084990ab9195f73afba8d8" Name="Diagram1">
-        <EntityTypeShape EntityType="firmaModel.hierarchia" Width="1.5" PointX="1.375" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="firmaModel.zamestnanci" Width="1.5" PointX="3.625" PointY="1.25" IsExpanded="true" />
+      <Diagram DiagramId="8be45021791949ab97cca406f352c194" Name="Diagram1">
+        <EntityTypeShape EntityType="firmaModel.hierarchia" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="firmaModel.zamestnanci" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="firmaModel.veduci_constraint" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

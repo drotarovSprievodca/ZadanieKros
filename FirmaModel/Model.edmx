@@ -9,16 +9,17 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="nazov" Type="varchar" MaxLength="10" />
-          <Property Name="patriDo" Type="int" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazov" Type="varchar" MaxLength="50" />
+          <Property Name="patriDo" Type="int" Nullable="false" />
+          <Property Name="uroven" Type="int" Nullable="false" />
           <Property Name="veduci" Type="int" />
         </EntityType>
         <EntityType Name="zamestnanci">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="titul" Type="varchar" MaxLength="15" />
           <Property Name="meno" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="priezvisko" Type="varchar" MaxLength="50" Nullable="false" />
@@ -54,9 +55,10 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="nazov" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="patriDo" Type="Int32" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazov" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="patriDo" Type="Int32" Nullable="false" />
+          <Property Name="uroven" Type="Int32" Nullable="false" />
           <Property Name="veduci" Type="Int32" />
           <NavigationProperty Name="zamestnanci" Relationship="Self.veduci_constraint" FromRole="hierarchia" ToRole="zamestnanci" />
         </EntityType>
@@ -64,7 +66,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="titul" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="meno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="priezvisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -104,6 +106,7 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nazov" ColumnName="nazov" />
                 <ScalarProperty Name="patriDo" ColumnName="patriDo" />
+                <ScalarProperty Name="uroven" ColumnName="uroven" />
                 <ScalarProperty Name="veduci" ColumnName="veduci" />
               </MappingFragment>
             </EntityTypeMapping>
