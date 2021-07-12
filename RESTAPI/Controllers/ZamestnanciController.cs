@@ -10,6 +10,7 @@ namespace RESTAPI.Controllers
 {
     public class ZamestnanciController : ApiController
     {
+        //GET api/zamestnanci
         [HttpGet]
         public IEnumerable<zamestnanci> GetZamestnanci() {
             using (firmaEntities f = new firmaEntities()) {
@@ -17,7 +18,14 @@ namespace RESTAPI.Controllers
                 return f.zamestnanci.ToList();
             }
         }
-
+        /*POST api/zamestnanci
+        {
+            "titul": null,
+            "meno": "Jan",
+            "priezvisko": "Tomas"
+            "telefon": "1597846328"
+            "email": "jan98@gmail.com"
+        }*/
         [HttpPost]
         public IHttpActionResult PostZamestnanci(zamestnanci novy) {
             if (!ModelState.IsValid)
@@ -34,7 +42,14 @@ namespace RESTAPI.Controllers
             }
             return Ok();
         }
-
+        /*PUT api/zamestnanci/1
+        {
+            "titul": "Ing.",
+            "meno": "Dusan",
+            "priezvisko": "Ruzbarsky",
+            "telefon": "9899999991",
+            "email": "ruzbarsky87@gmail.com"
+        }*/
         [HttpPut]
         public IHttpActionResult PutZamestnanci(int id, zamestnanci upravovany) {
             if (!ModelState.IsValid)
@@ -56,17 +71,16 @@ namespace RESTAPI.Controllers
             }
             return Ok();
         }
-
+        //DELETE api/zamestnanci/12
         [HttpDelete]
         public IHttpActionResult DeleteZamestnanci(int id) {
             if (id <= 0)
                 return BadRequest("Zle id");
             using (firmaEntities f = new firmaEntities()) {
                 var naZmazanie = f.zamestnanci.FirstOrDefault(z => z.id == id);
-                if (naZmazanie != null)
-                {
-                    foreach (var uz in f.hierarchia.Where(u => u.veduci == naZmazanie.id))
-                    {
+                if (naZmazanie != null) {
+                    //v uzle, v ktorom bol zamestnanec veduci sa za veduceho nastavi null
+                    foreach (var uz in f.hierarchia.Where(u => u.veduci == naZmazanie.id)) {
                         uz.veduci = null;
                     };
                     f.zamestnanci.Remove(naZmazanie);
